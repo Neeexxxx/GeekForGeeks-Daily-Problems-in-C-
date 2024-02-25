@@ -1,0 +1,22 @@
+
+class Solution
+{
+    void solve(int s, vector<long long int>& dp, long long int& n){
+        for(int i=s; i<=n; i++){
+            dp[i] += dp[i - s];
+        }
+    }
+    public:
+    // Complete this function
+    long long int count(long long int n)
+    {
+        vector<long long int> dp(n + 1);
+        dp[0] = 1;
+        
+        solve(3, dp, n);
+        solve(5, dp, n);
+        solve(10, dp, n);
+        
+        return dp[n];
+    }
+};
