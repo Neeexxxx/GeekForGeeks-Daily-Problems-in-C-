@@ -1,0 +1,25 @@
+class Solution{
+	public:
+	    
+	    void solve(int i,vector<string> &ans,string &t, string s){
+	        if(i==s.size()){
+	            ans.push_back(t);
+	            return;
+	        }
+	        
+	        t = t + s[i];
+	        solve(i+1,ans,t,s);
+	        t.pop_back();
+	        solve(i+1,ans,t,s);
+	        
+	    }
+	    
+		vector<string> AllPossibleStrings(string s){
+		    vector<string> ans;
+		    string t="";
+		    solve(0,ans,t,s);
+		    sort(ans.begin(),ans.end());
+		    ans.erase(ans.begin());
+		    return ans;
+		}
+};
