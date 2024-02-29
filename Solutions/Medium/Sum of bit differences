@@ -1,0 +1,25 @@
+//User function template for C++
+class Solution{
+public:
+	
+	long long sumBitDifferences(int arr[], int n) {
+	    // code here
+	    long long cnt=0; 
+	    int mx=*max_element(arr,arr+n);
+	    while(mx){
+	       long long cn_1=0;
+	       for(int i=0;i<n;i++){
+	           if(arr[i]%2==1){
+	               cn_1++;
+	           }
+	           arr[i]/=2;
+	       }
+	       
+	       cnt+=cn_1*(n-cn_1);
+	       
+	       mx/=2;
+	    }
+	      
+	    return 2*cnt;
+	}
+};
