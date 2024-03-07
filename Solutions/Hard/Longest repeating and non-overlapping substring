@@ -1,0 +1,38 @@
+class Solution {
+  public:
+    string longestSubstring(string s, int n) {
+        vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+        // dp[i][j] stores the length of the matching substr with ith and jth characters
+        string ans = "";
+        int lenMax = 0;
+        int ind = 0;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j = i+1;j<=n;j++)
+            {
+                if(s[i-1]==s[j-1] && dp[i-1][j-1]<(j-i))
+                {
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                    if(dp[i][j]>lenMax)
+                    {
+                        lenMax = dp[i][j];
+                        ind= max(i,ind);
+                    }
+                }
+                
+            }
+        }
+        if(lenMax>0)
+        {
+            for(int i=ind-lenMax+1;i<=ind;i++)
+            {
+                ans.push_back(s[i-1]);
+            }
+            return ans;
+        }
+        return "-1";
+        
+        
+        
+    }
+};
