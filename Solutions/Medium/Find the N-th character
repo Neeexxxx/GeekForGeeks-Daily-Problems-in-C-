@@ -1,0 +1,18 @@
+//User function template for C++
+
+class Solution{
+  public:
+    char getans(char curr, int p, int ind){
+        if(ind == 0){
+            return curr;
+        }
+        if(ind >= (p / 2)){
+            return getans(curr == '1' ? '0' : '1', p/2, ind - (p/2));
+        }
+        return getans(curr, p/2, ind);
+    }
+    char nthCharacter(string s, int r, int n) {
+        int p = pow(2, r);
+        return getans(s[n/p], p, n % p);
+    }
+};
