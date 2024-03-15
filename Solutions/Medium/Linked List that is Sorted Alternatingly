@@ -1,0 +1,33 @@
+
+/*
+struct Node
+{
+	int data;
+	struct Node *next;
+	
+	Node(int x){
+	    data =x;
+	    next = NULL;
+	}
+};
+*/
+
+class Solution {
+public:
+    void sort(Node** head) {
+        vector<int> vec;
+        Node* ptr = *head;
+        
+        while (ptr != nullptr){
+            vec.push_back(ptr->data);
+            ptr = ptr->next;
+        }
+        
+        std::sort(vec.begin(),vec.end());
+        ptr = *head;
+        for (auto x : vec){
+            ptr->data = x;
+            ptr = ptr->next;
+        }
+    }
+};
