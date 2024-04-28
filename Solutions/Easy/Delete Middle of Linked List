@@ -1,0 +1,41 @@
+/* Link list Node:
+
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+// Deletes middle of linked list and returns head of the modified list
+class Solution{
+    public:
+    Node* deleteMid(Node* head)
+    {
+        // Your Code Here
+         int cnt=0;
+        Node *temp=head;
+        while(temp){
+            cnt++;
+            temp=temp->next;
+        }
+        cnt=cnt/2;
+        // Node *prev=head;
+        Node *prev=0;
+        // temp=head->next;
+        temp=head;
+        while(cnt!=0){
+            prev=temp;
+            temp=temp->next;
+            cnt--;
+        }
+        prev->next=temp->next;
+        return head;
+    }
+};
