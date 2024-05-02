@@ -1,0 +1,66 @@
+class Solution
+{
+    public:
+    //Function to serialize a tree and return a list containing nodes of tree.
+    void traversal(Node*root,vector<int>&tree){
+        queue<Node*>q;
+        q.push(root);
+        while(!q.empty()){
+            Node*a = q.front();q.pop();
+            if(a==NULL){
+                tree.push_back(-1);
+            }
+            else{
+                tree.push_back(a->data);   
+                 q.push(a->left);
+                 q.push(a->right);
+            }
+           
+        }
+    }
+    vector<int> serialize(Node *root) 
+    {  vector<int>tree;
+        traversal(root,tree);
+        return tree;
+    }
+    
+    //Function to deserialize a list and construct the tree.
+    Node * deSerialize(vector<int> &tree)
+    {
+       queue<Node*>q;
+       Node*root =new Node(tree[0]);
+       Node*p=root;
+        q.push(root);
+        int s=1;
+        while(!q.empty()){
+            if(root!=NULL){
+                
+            
+            int a = tree[s++];
+            int b =tree[s++];
+            if(a!=-1){
+                root->left=new Node(a);
+            }
+            else{
+                root->left=NULL;
+            }
+            q.push(root->left);
+            if(b!=-1){
+                root->right = new Node(b);
+            }
+            else{
+                root->right=NULL;
+            }
+            q.push(root->right);
+            }
+            q.pop();
+            root=q.front();
+            
+        }
+         
+        return p;
+        
+        
+    }
+
+};
