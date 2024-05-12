@@ -1,0 +1,27 @@
+
+class Solution {
+  public:
+    int minSteps(int d) {
+        // code here
+        int sum=0;
+        int i=1;
+        int steps=0;
+        while(sum<d){
+            sum+=i;
+            i++;
+            steps++;
+        }
+        if(sum==d){
+            return steps;
+        }
+        if(abs(sum-d)%2==0){
+            return steps;
+        }
+        while(abs(sum-d)%2!=0){
+            sum+=i;
+            i++;
+            steps++;
+        }
+        return steps;
+    }
+};
